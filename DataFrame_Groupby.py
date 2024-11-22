@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
+<<<<<<< HEAD
 __author__ = 'Sophie, Selma, Emmanuel and Deborah are very smart and funny"
+=======
+__author__ = "Sophie, Selma and Deborah are very smart"
+>>>>>>> d180854da172f9eb21016819386712d8816a12d2
 
 import pandas as pd
 import numpy as np
