@@ -21,35 +21,21 @@ ratings = pd.read_csv('dataSet/ratings.txt', engine='python',
 mergeRatings = pd.merge(pd.merge(users, ratings), movies)
 
 # Clone DataFrame
-
-
 def cloneDF(df):
     a = pd.DataFrame(df.values.copy(), df.index.copy(), df.columns.copy())
-    return a.apply(pd.to_numeric, errors = 'ignore')
-
+    return a.apply(pd.to_numeric, errors='ignore')  # Convert to numeric for numerical columns only
 
 # Show Films with more votes. (groupby + sorted)
 numberRatings = cloneDF(mergeRatings)
-numberRatings = numberRatings.groupby(
-    'title').size().sort_values(ascending=False)
+numberRatings = numberRatings.groupby('title').size().sort_values(ascending=False)
 print('Films with more votes: \n%s' % numberRatings[:10])
 print('\n==================================================================\n')
 
-
 # Show avg ratings movie (groupby + avg)
-avgRatings = cloneDF(mergeRatings)
-avgRatings = avgRatings.groupby(['movie_id', 'title']).mean()
-print('Avg ratings: \n%s' % avgRatings['rating'][:10])
-print('\n==================================================================\n')
-
-
-# Show data ratings movies (groupby + several funtions)
 dataRatings = cloneDF(mergeRatings)
-dataRatings = dataRatings.groupby(['movie_id', 'title'])[
-    'rating'].agg(['mean', 'sum', 'count', 'std'])
+dataRatings = dataRatings.groupby(['movie_id', 'title'])['rating'].agg(['mean', 'sum', 'count', 'std'])
 print('Films ratings info: \n%s' % dataRatings[:10])
 print('\n==================================================================\n')
-
 
 # Show data ratings movies, applying a function (groupby + lambda function)
 myAvg = cloneDF(mergeRatings)
@@ -58,9 +44,9 @@ myAvg = myAvg.groupby(['movie_id', 'title'])['rating'].agg(
 print('My info ratings: \n%s' % myAvg[:10])
 print('\n==================================================================\n')
 
-
 # Sort data ratings by created field (groupby + lambda function + sorted)
 sortRatingsField = cloneDF(mergeRatings)
 sortRatingsField = sortRatingsField.groupby(['movie_id', 'title'])['rating'].agg(
-    COUNT=np.size, myAVG=lambda x: x.sum() / float(x.count())).df.sort_value(by='COUNT', ascending=False)
+    COUNT=np.size, myAVG=lambda x: x.sum() / float(x.count()))
+sortRatingsField = sortRatingsField.sort_values(by='COUNT', ascending=False)  
 print('My info sorted: \n%s' % sortRatingsField[:15])
