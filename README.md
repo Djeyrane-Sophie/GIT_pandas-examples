@@ -1,3 +1,4 @@
 # Selma and Sophie not friends
 
-c'est tout
+![Getting Started](image.jpeg)
+
