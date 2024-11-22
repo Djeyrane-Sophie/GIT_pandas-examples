@@ -75,7 +75,7 @@ sortRatingsFieldEmmanuel = sortRatingsFieldEmmanuel.groupby(['movie_id', 'title'
 print('My info sorted: \n%s' % sortRatingsFieldEmmanuel[:15])
 
 # Essaie des modifications Deborah
-
+print (dataRatings)
 
 print('test')
 
