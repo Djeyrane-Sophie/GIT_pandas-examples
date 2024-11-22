@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+
 __author__ = 'Sophie no Deborah'
+
 
 import pandas as pd
 import numpy as np
@@ -49,10 +51,6 @@ sortRatingsFieldEmmanuel = cloneDF(mergeRatings)
 sortRatingsFieldEmmanuel = sortRatingsFieldEmmanuel.groupby(['movie_id', 'title'])['rating'].agg(
     COUNT=np.size, myAVG=lambda x: x.sum() / float(x.count())).sort_values(by='COUNT',  ascending=False) #test Emmanuel , sort('COUNT', ascending=False)
 print('My info sorted: \n%s' % sortRatingsFieldEmmanuel[:15])
-
-# Essaie des modifications Deborah
-print (dataRatings)
-
 print('test')
 
 # Essai des modifications Deborah
